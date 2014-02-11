@@ -1,0 +1,11 @@
+{
+  "name": "contact-manager",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trip42/contact-manager.git"
+  },
+  "dependencies": {
+    "express": "*",
+    "underscore": "*"
+  }
+}
