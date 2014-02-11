@@ -11,5 +11,5 @@ Dependencies
 Installing
 ----------
 
-> git clone https://github.com/trip42/contact-manager.git
-> npm install
+    > git clone https://github.com/trip42/contact-manager.git
+    > npm install
