@@ -17,24 +17,63 @@
 
 	// views
 	var ContactView = Marionette.ItemView.extend({
-		template: _.template( $( '#contact-template' ).html() )
+		tagName: 'tr',
+		template: _.template( $( '#contact-template' ).html() ),
+		events: {
+			'click': 'loadDetails'
+		},
+		loadDetails: function() {
+			app.router.navigate( 'contacts/' + this.model.get( 'id' ), { trigger: true } );
+		}
 	});
 
 	var ContactsView = Marionette.CompositeView.extend({
 		template: _.template( $( '#contacts-template' ).html() ),
 		itemView: ContactView,
-		itemViewContainer: 'tbody'
+		itemViewContainer: 'tbody',
+		events: {
+			'click .add-contact': 'addContact'
+		},
+		addContact: function() {
+			var contact = this.collection.create({
+				name: 'New Contact'
+			});
+		}
+	});
+
+	var ContactDetailView = Marionette.ItemView.extend({
+		template: _.template( $( '#contact-detail' ).html() ),
+		events: {
+			'click button': 'saveContact'
+		},
+		ui: {
+			name: '.name',
+			phone: '.phone',
+			twitter: '.twitter'
+		},
+		saveContact: function( $event ) {
+			$event.preventDefault();
+
+			this.model.save({
+				name: this.ui.name.val(),
+				phone: this.ui.phone.val(),
+				twitter: this.ui.twitter.val()
+			});
+
+			app.router.navigate( '', { trigger: true } );
+		}
 	});
 
 	// Controller provides handlers for the Router
 	var ContactController = Marionette.Controller.extend({
-		initialize: function( app ) {
-			this.app = app;
+		listContacts: function() {
+			app.main.show( new ContactsView( {
+				collection: app.contacts
+			} ) );
 		},
 		showContact: function( contactId ) {
-			var contact = this.app.contacts.get( contactId );
-			this.app.details.show( new ContactDetailView( {
-				model: contact
+			app.main.show( new ContactDetailView( {
+				model: app.contacts.get( contactId )
 			} ) );
 		}
 	});
@@ -42,7 +81,8 @@
 	// Router maps URL changes to controller methods
 	var ContactRouter = Marionette.AppRouter.extend({
 		appRoutes: {
-			'/contacts/:id': 'showContact'
+			'': 'listContacts',
+			'contacts/:id': 'showContact'
 		}
 	});
 
@@ -52,28 +92,20 @@
 	// regions are areas of the page where youu can
 	// show other views.
 	app.addRegions({
-		list: '.contact-list',
-		details: '.contact-details'
+		main: '.main'
 	});
 
-	app.addInitializer( function() {
-		// instantiate the collection
-		app.contacts = new ContactCollection();
-		app.contacts.fetch();
+	// instantiate the collection
+	app.contacts = new ContactCollection();
 
-		// instantiate the router
-		app.router = new ContactRouter({
-			controller: new ContactController( app )
-		});
-
-		// show the contacts list in the list region
-		app.list.show( new ContactsView( { collection: this.contacts } ) );
+	// instantiate the router
+	app.router = new ContactRouter({
+		controller: new ContactController( app )
 	});
 
-	app.on( 'initialize:after', function() {
+	app.contacts.fetch( { success: function() {
+		// start monitoring the URL for changes
 		Backbone.history.start();
-	});
-
-	app.start();
+	} } );
 
 })( this );
