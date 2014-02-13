@@ -15,7 +15,7 @@
 		model: ContactModel
 	});
 
-	// views
+	// Views
 	var ContactView = Marionette.ItemView.extend({
 		tagName: 'tr',
 		template: _.template( $( '#contact-template' ).html() ),
@@ -103,8 +103,9 @@
 		controller: new ContactController( app )
 	});
 
+	// fetch the contacts from the server
+	// when they are received start the routing
 	app.contacts.fetch( { success: function() {
-		// start monitoring the URL for changes
 		Backbone.history.start();
 	} } );
 

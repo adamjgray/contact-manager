@@ -2,14 +2,16 @@
 <html>
   <head>
     <title>Contact Manager</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/contact-manager.css">
   </head>
   <body>
 
-    <div class="main"></div>
+    <div class="container main"></div>
 
     <script type="text/html" id="contacts-template">
       <h2>Contacts</h2>
-      <table class="table">
+      <table class="table table-hover">
       <thead>
       <tr>
         <th>Name</th>
@@ -20,41 +22,28 @@
       <tbody>
       </tbody>
       </table>
-      <button class="add-contact">Add a Contact</button>
+      <button class="btn add-contact">Add a Contact</button>
     </script>
+
     <script type="text/html" id="contact-template">
       <td class="name"><%= name %></td>
       <td class="phone"><%= phone %></td>
       <td class="twitter"><%= twitter %></td>
     </script>
+
     <script type="text/html" id="contact-detail">
       <h2>Edit Contact</h2>
-      <form class="form-horizontal">
-        <div class="control-group">
-          <label class="control-label" for="name">Name:</label>
-          <div class="controls">
-            <input type="text" id="name" class="name" value="<%= name %>">
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="phone">Phone:</label>
-          <div class="controls">
-            <input type="text" id="phone" class="phone" value="<%= phone %>">
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="twitter">Twitter:</label>
-          <div class="controls">
-            <input type="text" id="name" class="twitter" value="<%= twitter %>">
-          </div>
-        </div>        
-        <div class="control-group">
-          <div class="controls">
-            <button class="btn">Save</button>
-          </div>
-        </div>
-      </form>
+      <label class="control-label" for="name">Name:</label>
+      <input type="text" id="name" class="name" value="<%= name %>">
+      <label class="control-label" for="phone">Phone:</label>
+      <input type="text" id="phone" class="phone" value="<%= phone %>">
+      <label class="control-label" for="twitter">Twitter:</label>
+      <input type="text" id="name" class="twitter" value="<%= twitter %>">
+      <div class="control-group">
+        <button class="btn">Save</button>
+      </div>
     </script>
+
     <script type="text/javascript" src="lib/jquery.js"></script>
     <script type="text/javascript" src="lib/underscore.js"></script>
     <script type="text/javascript" src="lib/backbone.js"></script>
