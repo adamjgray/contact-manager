@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    <title>Contact Manager</title>
+
+    <!-- build:css css/vendor.css -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <!-- endbuild -->
+
+    <!-- build:css css/app.css -->
+    <link rel="stylesheet" href="/css/contact-manager.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+
+    <ng-view class="container main"></ng-view>
+
+    <!-- build:js js/vendor.js-->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js js/app.js-->
+    <script type="text/javascript" src="js/contact-manager.js"></script>
+    <script src="js/ContactManagerApp.js"></script>
+    <script src="js/contact/ContactEditCtrl.js"></script>
+    <script src="js/contact/ContactListCtrl.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

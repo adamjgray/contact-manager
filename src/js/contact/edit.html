@@ -1,0 +1,16 @@
+<div ng-controller="ContactEditCtrl as edit">
+    <h2>Edit Contact</h2>
+
+    <label class="control-label" for="name">Name:</label>
+    <input type="text" id="name" ng-model="edit.name">
+
+    <label class="control-label" for="phone">Phone:</label>
+    <input type="text" id="phone" ng-model="edit.phone">
+
+    <label class="control-label" for="twitter">Twitter:</label>
+    <input type="text" id="twitter" ng-model="edit.twitter">
+
+    <div class="control-group">
+        <button class="btn" ng-click="edit.save()">Save</button>
+    </div>
+</div>

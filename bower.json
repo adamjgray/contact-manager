@@ -1,0 +1,24 @@
+{
+  "name": "contact-manager",
+  "version": "0.0.0",
+  "homepage": "https://github.com/adamjgray/contact-manager",
+  "authors": [
+    "Adam Gray <agray@polarislabs.com>"
+  ],
+  "description": "angularjs version of the marionette.js contact-manager demo from indy.js Feb'14 meetup",
+  "main": "server.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1",
+    "jquery": "~2.1.0",
+    "angular": "~1.2.13"
+  }
+}
